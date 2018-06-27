@@ -1,0 +1,2940 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="https://github.com/cryptape/cita/en/usage-guide/rpc/index.html">
+      
+      
+        <meta name="author" content="Cryptape">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.2.5">
+    
+    
+      
+        <title>JSON-RPC - CITA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.bcabdff3.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.792431c1.css">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    
+      <body data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://github.com/cryptape/cita" title="CITA" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                CITA
+              </span>
+              <span class="md-header-nav__topic">
+                JSON-RPC
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/cryptape/cita/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../zh/index.html" title="中文" class="md-tabs__link">
+          中文
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../index.html" title="EN" class="md-tabs__link md-tabs__link--active">
+          EN
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    CITA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/cryptape/cita/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      中文
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        中文
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/index.html" title="首页" class="md-nav__link">
+      首页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/getting_started/index.html" title="快速入门" class="md-nav__link">
+      快速入门
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3" type="checkbox" id="nav-1-3">
+    
+    <label class="md-nav__link" for="nav-1-3">
+      主要概念
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-3">
+        主要概念
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/key-concepts/blockchain/index.html" title="区块链" class="md-nav__link">
+      区块链
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/key-concepts/cita/index.html" title="CITA" class="md-nav__link">
+      CITA
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/components/index.html" title="系统组件" class="md-nav__link">
+      系统组件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-5" type="checkbox" id="nav-1-5">
+    
+    <label class="md-nav__link" for="nav-1-5">
+      使用指南
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-5">
+        使用指南
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/usage-guide/bootstrap/index.html" title="Bootstrap" class="md-nav__link">
+      Bootstrap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/usage-guide/smart-contract-guide/index.html" title="智能合约指南" class="md-nav__link">
+      智能合约指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/usage-guide/rpc/index.html" title="JSON-RPC" class="md-nav__link">
+      JSON-RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/usage-guide/rpc-types/index.html" title="JSON-RPC 参数和返回值的数据类型" class="md-nav__link">
+      JSON-RPC 参数和返回值的数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/usage-guide/rpc_error_code/index.html" title="JSON-RPC 错误码" class="md-nav__link">
+      JSON-RPC 错误码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/usage-guide/admintool/index.html" title="系统合约" class="md-nav__link">
+      系统合约
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/usage-guide/txtool/index.html" title="交易相关工具" class="md-nav__link">
+      交易相关工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-6" type="checkbox" id="nav-1-6">
+    
+    <label class="md-nav__link" for="nav-1-6">
+      系统管理
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-6">
+        系统管理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/system_management/node/index.html" title="节点管理" class="md-nav__link">
+      节点管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/system_management/permission/index.html" title="权限管理" class="md-nav__link">
+      权限管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/system_management/user/index.html" title="用户管理" class="md-nav__link">
+      用户管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/system_management/quota/index.html" title="配额管理" class="md-nav__link">
+      配额管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/system_management/log/index.html" title="日志管理" class="md-nav__link">
+      日志管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/system_management/snapshot/index.html" title="快照" class="md-nav__link">
+      快照
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-7" type="checkbox" id="nav-1-7">
+    
+    <label class="md-nav__link" for="nav-1-7">
+      跨链
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-7">
+        跨链
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/crosschain/crosschain_contract_example/index.html" title="跨链合约编写及操作示例" class="md-nav__link">
+      跨链合约编写及操作示例
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-8" type="checkbox" id="nav-1-8">
+    
+    <label class="md-nav__link" for="nav-1-8">
+      架构设计
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-8">
+        架构设计
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/architecture/architecture/index.html" title="微服务" class="md-nav__link">
+      微服务
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/architecture/consensus/index.html" title="共识" class="md-nav__link">
+      共识
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/architecture/transaction_process/index.html" title="交易处理" class="md-nav__link">
+      交易处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/architecture/view/index.html" title="视图" class="md-nav__link">
+      视图
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/faq/index.html" title="常见问题" class="md-nav__link">
+      常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-10" type="checkbox" id="nav-1-10">
+    
+    <label class="md-nav__link" for="nav-1-10">
+      附录
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-10">
+        附录
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/appendix/contributing/index.html" title="贡献代码" class="md-nav__link">
+      贡献代码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../zh/appendix/glossary/index.html" title="词汇表" class="md-nav__link">
+      词汇表
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      EN
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        EN
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../getting_started/index.html" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Concepts
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../key-concepts/blockchain/index.html" title="Blockchain" class="md-nav__link">
+      Blockchain
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../key-concepts/cita/index.html" title="CITA" class="md-nav__link">
+      CITA
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../components/index.html" title="Components" class="md-nav__link">
+      Components
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5" checked>
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Usage Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        Usage Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bootstrap/index.html" title="Bootstrap" class="md-nav__link">
+      Bootstrap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../smart-contract-guide/index.html" title="Smart Contracts" class="md-nav__link">
+      Smart Contracts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        JSON-RPC
+      </label>
+    
+    <a href="index.html" title="JSON-RPC" class="md-nav__link md-nav__link--active">
+      JSON-RPC
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json-rpc" title="JSON-RPC" class="md-nav__link">
+    JSON-RPC
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peercount" title="peerCount" class="md-nav__link">
+    peerCount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocknumber" title="blockNumber" class="md-nav__link">
+    blockNumber
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sendrawtransaction" title="sendRawTransaction" class="md-nav__link">
+    sendRawTransaction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="生成签名交易的过程" class="md-nav__link">
+    生成签名交易的过程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protobuf" title="构造protobuf数据结构" class="md-nav__link">
+    构造protobuf数据结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="一些交易字段的说明" class="md-nav__link">
+    一些交易字段的说明
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bytecode" title="获得合约对应的bytecode" class="md-nav__link">
+    获得合约对应的bytecode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="构造签名" class="md-nav__link">
+    构造签名
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="签名后的交易" class="md-nav__link">
+    签名后的交易
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getblockbyhash" title="getBlockByHash" class="md-nav__link">
+    getBlockByHash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getblockbynumber" title="getBlockByNumber" class="md-nav__link">
+    getBlockByNumber
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettransactionreceipt" title="getTransactionReceipt" class="md-nav__link">
+    getTransactionReceipt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getlogs" title="getLogs" class="md-nav__link">
+    getLogs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#call" title="call" class="md-nav__link">
+    call
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettransaction" title="getTransaction" class="md-nav__link">
+    getTransaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettransactioncount" title="getTransactionCount" class="md-nav__link">
+    getTransactionCount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcode" title="getCode" class="md-nav__link">
+    getCode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getabi" title="getAbi" class="md-nav__link">
+    getAbi
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accountabiabi" title="在Account中保存ABI和获取ABI" class="md-nav__link">
+    在Account中保存ABI和获取ABI
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abi" title="保存ABI" class="md-nav__link">
+    保存ABI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abi_1" title="查询abi" class="md-nav__link">
+    查询abi
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getbalance" title="getBalance" class="md-nav__link">
+    getBalance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newfilter" title="newFilter" class="md-nav__link">
+    newFilter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newblockfilter" title="newBlockFilter" class="md-nav__link">
+    newBlockFilter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstallfilter" title="uninstallFilter" class="md-nav__link">
+    uninstallFilter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getfilterchanges" title="getFilterChanges" class="md-nav__link">
+    getFilterChanges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getfilterlogs" title="getFilterLogs" class="md-nav__link">
+    getFilterLogs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettransactionproof" title="getTransactionProof" class="md-nav__link">
+    getTransactionProof
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getmetadata" title="getMetaData" class="md-nav__link">
+    getMetaData
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rpc-errors" title="RPC Errors" class="md-nav__link">
+    RPC Errors
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#invalid-request" title="Invalid Request" class="md-nav__link">
+    Invalid Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-not-found" title="Method not found" class="md-nav__link">
+    Method not found
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalid-params" title="Invalid params" class="md-nav__link">
+    Invalid params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null" title="Null" class="md-nav__link">
+    Null
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rpc_error_code/index.html" title="JSON-RPC Error Code" class="md-nav__link">
+      JSON-RPC Error Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../admintool/index.html" title="System Contract" class="md-nav__link">
+      System Contract
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../txtool/index.html" title="Transaction Tool" class="md-nav__link">
+      Transaction Tool
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      System
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        System
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../system_management/node/index.html" title="Node" class="md-nav__link">
+      Node
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../system_management/permission/index.html" title="Permission" class="md-nav__link">
+      Permission
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../system_management/user/index.html" title="User" class="md-nav__link">
+      User
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../system_management/quota/index.html" title="Quota" class="md-nav__link">
+      Quota
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../system_management/log/index.html" title="Log" class="md-nav__link">
+      Log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../system_management/snapshot/index.html" title="Snapshot" class="md-nav__link">
+      Snapshot
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      Cross Chain
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-7">
+        Cross Chain
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../crosschain/crosschain_contract_example/index.html" title="Cross Chain Contract Examples" class="md-nav__link">
+      Cross Chain Contract Examples
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8">
+    
+    <label class="md-nav__link" for="nav-2-8">
+      Architecture
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-8">
+        Architecture
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../architecture/architecture/index.html" title="Micro Service" class="md-nav__link">
+      Micro Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../architecture/consensus/index.html" title="Consensus" class="md-nav__link">
+      Consensus
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../architecture/transaction_process/index.html" title="Transaction Process" class="md-nav__link">
+      Transaction Process
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../architecture/view/index.html" title="View" class="md-nav__link">
+      View
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/index.html" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      Appendix
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-10">
+        Appendix
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../appendix/contributing/index.html" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../appendix/glossary/index.html" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json-rpc" title="JSON-RPC" class="md-nav__link">
+    JSON-RPC
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peercount" title="peerCount" class="md-nav__link">
+    peerCount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocknumber" title="blockNumber" class="md-nav__link">
+    blockNumber
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sendrawtransaction" title="sendRawTransaction" class="md-nav__link">
+    sendRawTransaction
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="生成签名交易的过程" class="md-nav__link">
+    生成签名交易的过程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protobuf" title="构造protobuf数据结构" class="md-nav__link">
+    构造protobuf数据结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="一些交易字段的说明" class="md-nav__link">
+    一些交易字段的说明
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bytecode" title="获得合约对应的bytecode" class="md-nav__link">
+    获得合约对应的bytecode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="构造签名" class="md-nav__link">
+    构造签名
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="签名后的交易" class="md-nav__link">
+    签名后的交易
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getblockbyhash" title="getBlockByHash" class="md-nav__link">
+    getBlockByHash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getblockbynumber" title="getBlockByNumber" class="md-nav__link">
+    getBlockByNumber
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettransactionreceipt" title="getTransactionReceipt" class="md-nav__link">
+    getTransactionReceipt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getlogs" title="getLogs" class="md-nav__link">
+    getLogs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#call" title="call" class="md-nav__link">
+    call
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettransaction" title="getTransaction" class="md-nav__link">
+    getTransaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettransactioncount" title="getTransactionCount" class="md-nav__link">
+    getTransactionCount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcode" title="getCode" class="md-nav__link">
+    getCode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getabi" title="getAbi" class="md-nav__link">
+    getAbi
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accountabiabi" title="在Account中保存ABI和获取ABI" class="md-nav__link">
+    在Account中保存ABI和获取ABI
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abi" title="保存ABI" class="md-nav__link">
+    保存ABI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abi_1" title="查询abi" class="md-nav__link">
+    查询abi
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getbalance" title="getBalance" class="md-nav__link">
+    getBalance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newfilter" title="newFilter" class="md-nav__link">
+    newFilter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newblockfilter" title="newBlockFilter" class="md-nav__link">
+    newBlockFilter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstallfilter" title="uninstallFilter" class="md-nav__link">
+    uninstallFilter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getfilterchanges" title="getFilterChanges" class="md-nav__link">
+    getFilterChanges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getfilterlogs" title="getFilterLogs" class="md-nav__link">
+    getFilterLogs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettransactionproof" title="getTransactionProof" class="md-nav__link">
+    getTransactionProof
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getmetadata" title="getMetaData" class="md-nav__link">
+    getMetaData
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rpc-errors" title="RPC Errors" class="md-nav__link">
+    RPC Errors
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#invalid-request" title="Invalid Request" class="md-nav__link">
+    Invalid Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-not-found" title="Method not found" class="md-nav__link">
+    Method not found
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalid-params" title="Invalid params" class="md-nav__link">
+    Invalid params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null" title="Null" class="md-nav__link">
+    Null
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/cryptape/cita/docs/docs/en/usage-guide/rpc.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="cita-json-rpc">CITA JSON-RPC<a class="headerlink" href="#cita-json-rpc" title="Permanent link">&para;</a></h1>
+<h2 id="json-rpc">JSON-RPC<a class="headerlink" href="#json-rpc" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#peercount">peerCount</a></li>
+<li><a href="#blocknumber">blockNumber</a></li>
+<li><a href="#sendrawtransaction">sendRawTransaction</a></li>
+<li><a href="#getblockbyhash">getBlockByHash</a></li>
+<li><a href="#getblockbynumber">getBlockByNumber</a></li>
+<li><a href="#gettransactionreceipt">getTransactionReceipt</a></li>
+<li><a href="#getlogs">getLogs</a></li>
+<li><a href="#call">call</a></li>
+<li><a href="#gettransaction">getTransaction</a></li>
+<li><a href="#gettransactioncount">getTransactionCount</a></li>
+<li><a href="#getcode">getCode</a></li>
+<li><a href="#getabi">getAbi</a></li>
+<li><a href="#getbalance">getBalance</a></li>
+<li><a href="#newfilter">newFilter</a></li>
+<li><a href="#newblockfilter">newBlockFilter</a></li>
+<li><a href="#uninstallfilter">uninstallFilter</a></li>
+<li><a href="#getfilterchanges">getFilterChanges</a></li>
+<li><a href="#getfilterlogs">getFilterLogs</a></li>
+<li><a href="#gettransactionproof">getTransactionProof</a></li>
+<li><a href="#getmetadata">getMetaData</a></li>
+</ul>
+<hr />
+<h3 id="peercount">peerCount<a class="headerlink" href="#peercount" title="Permanent link">&para;</a></h3>
+<p>当前节点连接数。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<p>None</p>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Quantity</code> - integer of the number of connected peers.</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="nx">curl</span> <span class="o">-</span><span class="nx">X</span> <span class="nx">POST</span> <span class="o">--</span><span class="nx">data</span> <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;peerCount&quot;,&quot;params&quot;:[],&quot;id&quot;:74}&#39;</span>
+
+<span class="c1">// Result</span>
+<span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">74</span><span class="p">,</span>
+    <span class="s2">&quot;jsonrpc&quot;</span><span class="o">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;0x3&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="blocknumber">blockNumber<a class="headerlink" href="#blocknumber" title="Permanent link">&para;</a></h3>
+<p>返回当前块高度。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<p>None</p>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Quantity</code> - integer of current block height of CITA.</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="nx">curl</span> <span class="o">-</span><span class="nx">X</span> <span class="nx">POST</span> <span class="o">--</span><span class="nx">data</span> <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;blockNumber&quot;,&quot;params&quot;:[],&quot;id&quot;:83}&#39;</span>
+
+<span class="c1">// Result</span>
+<span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">83</span><span class="p">,</span>
+    <span class="s2">&quot;jsonrpc&quot;</span><span class="o">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;0x1d10&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="sendrawtransaction">sendRawTransaction<a class="headerlink" href="#sendrawtransaction" title="Permanent link">&para;</a></h3>
+<p>通过序列化交易调用区块链接口。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Data</code>, The signed transaction data.</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">signed_data</span> <span class="o">=</span> <span class="s2">&quot;0a9b0412013018fface20420f73b2a8d046060604052341561000f57600080fd5b5b60646000819055507f8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3336064604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a15b5b610178806100956000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b1146100495780636d4ce63c1461006c575b600080fd5b341561005457600080fd5b61006a6004808035906020019091905050610095565b005b341561007757600080fd5b61007f610142565b6040518082815260200191505060405180910390f35b7fc6d8c0af6d21f291e7c359603aa97e0ed500f04db6e983b9fce75a91c6b8da6b816040518082815260200191505060405180910390a1806000819055507ffd28ec3ec2555238d8ad6f9faf3e4cd10e574ce7e7ef28b73caa53f9512f65b93382604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a15b50565b6000805490505b905600a165627a7a72305820631927ec00e7a86b68950c2304ba2614a8dcb84780b339fc2bfe442bba418ce800291241884bfdfd8e417ab286fd761d42b71a9544071d91084c56f9063471ce82e266122a8f9a24614e1cf75070eea301bf1e7a65857def86093b6892e09ae7d0bcdff901&quot;</span>
+<span class="nx">params</span><span class="o">:</span> <span class="p">[</span><span class="nx">signed_data</span><span class="p">]</span>
+</pre></div>
+
+</li>
+</ul>
+<h4 id="_1">生成签名交易的过程<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<h4 id="protobuf">构造protobuf数据结构<a class="headerlink" href="#protobuf" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><span class="c1">// Transaction</span>
+<span class="nx">syntax</span> <span class="o">=</span> <span class="s2">&quot;proto3&quot;</span><span class="p">;</span>
+<span class="kr">enum</span> <span class="nx">Crypto</span> <span class="p">{</span>
+    <span class="nx">SECP</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">SM2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">message</span> <span class="nx">Transaction</span> <span class="p">{</span>
+    <span class="nx">string</span> <span class="nx">to</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nx">string</span> <span class="nx">nonce</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="nx">uint64</span> <span class="nx">quota</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// gas</span>
+    <span class="nx">uint64</span> <span class="nx">valid_until_block</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="nx">bytes</span> <span class="nx">data</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="nx">bytes</span> <span class="nx">value</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="nx">uint32</span> <span class="nx">chain_id</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="nx">uint32</span> <span class="nx">version</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">message</span> <span class="nx">UnverifiedTransaction</span> <span class="p">{</span>
+    <span class="nx">Transaction</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nx">bytes</span> <span class="nx">signature</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="nx">Crypto</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4 id="_2">一些交易字段的说明<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>to</code> -&gt; 交易要发送到的地址。</p>
+<p>调用合约时即为被调用合约的地址，部署合约时不填写该字段。注意地址形式为 40 个十六进制字符(160 位)，前导 0 不能省略，必须补全。</p>
+</li>
+<li>
+<p><code>nonce</code> -&gt; 交易的填充字段。</p>
+<p>区块链为了防止重放攻击，会拒绝接受重复的交易。如果交易中仅包含有效的交易数据，会存在两个正常的交易完全一样的情况。比如两次转账，如果转账人，收款人和金额都一样，那么两个交易就完全一样。因此需要用户在交易中填充一些内容，使得两个交易不一样。</p>
+<p>填充内容的形式为字符串，最大长度 128，具体内容用户自己定义。</p>
+</li>
+<li>
+<p><code>quota</code> -&gt; 交易的配额。</p>
+<p>合约的能力是图灵完备的，具备强大功能的同时，也意味着交易执行过程中可能出现死循环等无法终止的情况。因此，每个交易都要填写一个配额，指定交易最大执行时间，使得交易执行一定可以终止。如果是 solidity 编写的合约，有配套工具可以估算调用合约中的函数需要的配额数量。</p>
+</li>
+<li>
+<p><code>valid_until_block</code> -&gt; 交易上链的最大区块高度。</p>
+<p>区块链的发送交易接口是异步的，交易进入交易池接口即返回。后面需要用户轮询交易什么时候真正上链得到确认。视系统的拥堵情况，等待时间并没有一个确定的值。甚至有可能在后续环节发生错误，最终没有上链。因此用户轮询一段时间之后，发现交易还没有上链，这时无法确定交易的状态(失败 or 拥堵)。发送交易操作没有幂等性，因此无法通过重复发送交易来解决。所以需要一个类似超时的机制，保证等待一段时间之后，交易的状态就确定是失败的。</p>
+<p>该字段就是起这个作用，表示用户愿意等待交易上链的最大区块高度。在区块链达到该高度之后，交易就确定不会再上链了，用户可以放心地重新发送交易，或者进行其他的后续处理。</p>
+<p>实际使用中，可选的值在当前区块高度到当前区块高度 +100 之间。</p>
+</li>
+</ul>
+<h4 id="bytecode">获得合约对应的bytecode<a class="headerlink" href="#bytecode" title="Permanent link">&para;</a></h4>
+<p>以下代码片段为示例代码，具体获取 contract bytecode 的方法参考<a href="https://ethereum.stackexchange.com/questions/8115/how-to-get-the-bytecode-of-a-transaction-using-the-solidity-browser">文档</a></p>
+<p><a href="https://solidity.readthedocs.io/en/develop/">solidity</a>相关文档</p>
+<div class="highlight"><pre><span></span><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">24</span><span class="p">;</span>
+
+<span class="kd">contract</span> <span class="n">SimpleStorage</span> <span class="p">{</span>
+    <span class="kt">uint</span> <span class="n">storedData</span><span class="p">;</span>
+
+    <span class="kd">function</span> <span class="n">set</span><span class="p">(</span><span class="kt">uint</span> <span class="n">x</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+        <span class="n">storedData</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="n">get</span><span class="p">()</span> <span class="kr">view</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">storedData</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4 id="_3">构造签名<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ol>
+<li>构造Transaction对象tx，填充to, nonce, valid_until_block, quota, data, value, chain_id, version 8个字段。</li>
+<li>tx对象protobuf序列化后 sha3 -&gt; hash</li>
+<li>对 hash 进行签名 -&gt; signature</li>
+<li>构造UnverifiedTransaction, 使用hash, signature, SECP填充UnverifiedTransaction  -&gt; unverify_tx</li>
+<li>unverify_tx对象protobuf序列化</li>
+</ol>
+<p>伪代码描述:</p>
+<div class="highlight"><pre><span></span><span class="nb">let</span> <span class="nv">tx</span> <span class="o">=</span> Transaction::new<span class="o">()</span><span class="p">;</span>
+// contract bytecode
+<span class="nb">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="s2">&quot;6060604052341561000f57600080fd5b5b60646000819055507f8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3336064604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a15b5b610178806100956000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b1146100495780636d4ce63c1461006c575b600080fd5b341561005457600080fd5b61006a6004808035906020019091905050610095565b005b341561007757600080fd5b61007f610142565b6040518082815260200191505060405180910390f35b7fc6d8c0af6d21f291e7c359603aa97e0ed500f04db6e983b9fce75a91c6b8da6b816040518082815260200191505060405180910390a1806000819055507ffd28ec3ec2555238d8ad6f9faf3e4cd10e574ce7e7ef28b73caa53f9512f65b93382604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a15b50565b6000805490505b905600a165627a7a723058207fbd8b51e2ecdeb2425f642d6602a4ff030351102fd7afbed80318e61fa462670029&quot;</span>.from_hex<span class="o">()</span><span class="p">;</span>
+tx.setdata<span class="o">(</span>data<span class="o">)</span><span class="p">;</span>
+<span class="k">if</span> not depoly_contract <span class="o">{</span>
+    tx.setTo<span class="o">(</span>address<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+// current_block_height 可以通过CITA JSON-RPC接口 blockNumber 获取
+<span class="nb">let</span> <span class="nv">valid_util_block</span> <span class="o">=</span> current_block_height + <span class="m">88</span><span class="p">;</span>
+tx.set_valid_until_block<span class="o">(</span>valid_util_block<span class="o">)</span><span class="p">;</span>
+
+tx.set_nonce<span class="o">(</span>nonce<span class="o">)</span><span class="p">;</span>
+
+// 如果是solidity合约，可以通过solc --gas获取估算gas值，在此基础上加50%，或者在remix中运行获取的实际消耗gas上加一点
+tx.set_quota<span class="o">(</span>quota<span class="o">)</span><span class="p">;</span>
+
+// 当前version 默认为0
+tx.set_version<span class="o">(</span>verison<span class="o">)</span><span class="p">;</span>
+
+// language_depend_method和sign 分别是相应的语言或库中处理私钥和签名的方法
+<span class="nb">let</span> <span class="nv">privkey</span> <span class="o">=</span> language_depend_method<span class="o">(</span><span class="s2">&quot;966fc50326cf6e2b30b06d8214737fcc2cda5bdce84eb23e14b6dbf3540d3f84&quot;</span><span class="o">)</span><span class="p">;</span>
+<span class="nb">let</span> <span class="nv">signature</span> <span class="o">=</span> sign<span class="o">(</span>privkey, tx.protobuf_serialize<span class="o">()</span>.hash<span class="o">())</span><span class="p">;</span>
+
+<span class="nb">let</span> <span class="nv">unverify_tx</span> <span class="o">=</span> UnverifiedTransaction::new<span class="o">()</span><span class="p">;</span>
+unverify_tx.transaction <span class="o">=</span> tx<span class="p">;</span>
+unverify_tx.signature <span class="o">=</span> signature<span class="p">;</span>
+unverify_tx.crypto <span class="o">=</span> SECP<span class="p">;</span>
+
+<span class="nv">params</span> <span class="o">=</span> unverify_tx.protobuf_serialize<span class="o">()</span>.to_hex_string<span class="o">()</span><span class="p">;</span>
+</pre></div>
+
+<h4 id="_4">签名后的交易<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span>0a910212013218fface20420a0492a8302606060405234156100105760006000fd5b610015565b60e0806100236000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604b5780636d4ce63c14606c576045565b60006000fd5b341560565760006000fd5b606a60048080359060200190919050506093565b005b341560775760006000fd5b607d60a3565b6040518082815260200191505060405180910390f35b8060006000508190909055505b50565b6000600060005054905060b1565b905600a165627a7a72305820942223976c6dd48a3aa1d4749f45ad270915cfacd9c0bf3583c018d4c86f9da200291241edd3fb02bc1e844e1a6743e8986a61e1d8a584aac26db5fa1ce5b32700eba5d16ba4c754731f43692f3f5299e85176627e55b9f61f5fe3e43572ec8c535b0d9201
+</pre></div>
+
+<ul>
+<li>
+<p>Returns</p>
+<p><code>Data32</code> - 交易hash</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="nx">curl</span> <span class="o">-</span><span class="nx">X</span> <span class="nx">POST</span> <span class="o">--</span><span class="nx">data</span> <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;sendRawTransaction&quot;,&quot;params&quot;:[&quot;0x0a910212013218fface20420a0492a8302606060405234156100105760006000fd5b610015565b60e0806100236000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604b5780636d4ce63c14606c576045565b60006000fd5b341560565760006000fd5b606a60048080359060200190919050506093565b005b341560775760006000fd5b607d60a3565b6040518082815260200191505060405180910390f35b8060006000508190909055505b50565b6000600060005054905060b1565b905600a165627a7a72305820942223976c6dd48a3aa1d4749f45ad270915cfacd9c0bf3583c018d4c86f9da200291241edd3fb02bc1e844e1a6743e8986a61e1d8a584aac26db5fa1ce5b32700eba5d16ba4c754731f43692f3f5299e85176627e55b9f61f5fe3e43572ec8c535b0d9201&quot;],&quot;id&quot;:1}&#39;</span>
+
+<span class="c1">// Result</span>
+<span class="p">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span><span class="o">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;hash&quot;</span><span class="o">:</span> <span class="s2">&quot;0x4b5d67c1debdd5899fc7b5cd77e71987b8a2d174b361ca2dd4d713434b4ff037&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="s2">&quot;OK&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 如果是近期发送的重复交易，则会提示重复交易</span>
+
+<span class="p">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span><span class="o">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="o">-</span><span class="mi">32006</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Dup&quot;</span><span class="c1">//重复交易</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="getblockbyhash">getBlockByHash<a class="headerlink" href="#getblockbyhash" title="Permanent link">&para;</a></h3>
+<p>根据块hash查询块的信息。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Data32</code> - Hash of a block.</li>
+<li><code>Boolean</code> - 是否返回交易信息(True: 返回详细交易列表| False: 只返回交易hash).</li>
+</ol>
+<div class="highlight"><pre><span></span>params: <span class="o">[</span>
+    <span class="s1">&#39;0x296474ecb4c2c8c92b0ba7800a01530b70a6f2b6e76e5c2ed2f89356429ef329&#39;</span>,
+    <span class="nb">true</span>
+<span class="o">]</span>
+</pre></div>
+
+</li>
+<li>
+<p>Returns</p>
+<ol>
+<li><code>Object</code> - A block object, or null when no block was found:</li>
+</ol>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span>// Request
+curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getBlockByHash&quot;,&quot;params&quot;:[&quot;0x296474ecb4c2c8c92b0ba7800a01530b70a6f2b6e76e5c2ed2f89356429ef329&quot;, true],&quot;id&quot;:1}&#39;</span>
+
+// Result
+<span class="o">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;id&quot;</span>: <span class="m">1</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="o">{</span>
+    <span class="s2">&quot;version&quot;</span>: <span class="m">0</span>,
+    <span class="s2">&quot;hash&quot;</span>: <span class="s2">&quot;0x5038c222d460c32fd06df36d58bb7cf5c368a55e207a46ecb18695451bfe4069&quot;</span>,
+    <span class="s2">&quot;header&quot;</span>: <span class="o">{</span>
+      <span class="s2">&quot;timestamp&quot;</span>: <span class="m">1499756200950</span>,
+      <span class="s2">&quot;prevHash&quot;</span>: <span class="s2">&quot;0xb28ec1911d375350664b9673a61d952e9a748f3e63606f1440f313c4911fde58&quot;</span>,
+      <span class="s2">&quot;proof&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;proposal&quot;</span>: <span class="s2">&quot;0x0f25d396361c7d54bb16389f6a14bf95207915f91d180d382093e19adfc4133b&quot;</span>,
+        <span class="s2">&quot;height&quot;</span>: <span class="m">902</span>,
+        <span class="s2">&quot;round&quot;</span>: <span class="m">0</span>,
+        <span class="s2">&quot;commits&quot;</span>: <span class="o">{</span>
+          <span class="s2">&quot;0x2b027dacd33a41ddb09e21805778f19951776ed5&quot;</span>: <span class="s2">&quot;0x1532c58faedf9e103dd84aa6aacbd2121aa3a8102faa506e7e152fb10e45bafd31b1c3d372cf5d42f8b27a8bfea112ae194de76d99206f73837ad8c30267e6a501&quot;</span>,
+          <span class="s2">&quot;0x2d74a106464fbdf94e47bb28605a1aa244ab7788&quot;</span>: <span class="s2">&quot;0x2ec53371cee732d59d23a58cf6cf53d818fb906fdeb5b0521a3a4cdbb75cf29658a1ff5fa95e4dc71563cbed10070c68e2eec0f812fa3be8e019b6df6e9ea66201&quot;</span>,
+          <span class="s2">&quot;0x3efd4959af72e1214ab83caa0f04a0cc3e54d383&quot;</span>: <span class="s2">&quot;0xb051f0cc41bc3caed472d3c7a35e06d805e8f6d15ccb3efc257d71ee96932c5877a8e52fc29cb3bef73e0edbad62c617c4dd16763709b2604ab8b1db2d87736301&quot;</span>,
+          <span class="s2">&quot;0x5223818f7096520bfad68ce3d5ac959267dbc45f&quot;</span>: <span class="s2">&quot;0x1cf6f8dc9654d461a317db199de0ed0d2d008762833b3358e269ceb3c412b60b3f1a2bd08f969e0dc1c9ebe1a0710002f853438a6ef3ea048de9b4e67387827400&quot;</span>
+        <span class="o">}</span>
+      <span class="o">}</span>,
+      <span class="s2">&quot;stateRoot&quot;</span>: <span class="s2">&quot;0xe29266e5574bc0c848b513d36403d4da71f99f328d3324e8d3134809c33d4fb4&quot;</span>,
+      <span class="s2">&quot;transactionsRoot&quot;</span>: <span class="s2">&quot;0xf31e32611322f410f430ef8141c2237c19dd1034eddef8dedba692ec9851799b&quot;</span>,
+      <span class="s2">&quot;receiptsRoot&quot;</span>: <span class="s2">&quot;0x9646cf2572734b4b13fe1616446ab2658e208cfdbaf25e47ebea9b6327e10c5b&quot;</span>,
+      <span class="s2">&quot;gasUsed&quot;</span>: <span class="s2">&quot;0x0&quot;</span>,
+      <span class="s2">&quot;number&quot;</span>: <span class="s2">&quot;0x387&quot;</span>,
+      <span class="s2">&quot;proposer&quot;</span>:<span class="s2">&quot;0xe6d430a2d830236d3774d148cbee72bbf26cd481&quot;</span>,
+    <span class="o">}</span>,
+    <span class="s2">&quot;body&quot;</span>: <span class="o">{</span>
+      <span class="s2">&quot;transactions&quot;</span>: <span class="o">[</span>
+        <span class="o">{</span>
+          <span class="s2">&quot;hash&quot;</span>: <span class="s2">&quot;0xf31e32611322f410f430ef8141c2237c19dd1034eddef8dedba692ec9851799b&quot;</span>,
+          <span class="s2">&quot;content&quot;</span>: <span class="s2">&quot;0x0a28356230373365393233333934346235653732396534366436313866306438656466336439633334611a80040aba030a28356230373365393233333934346235653732396534366436313866306438656466336439633334611a87030a013010a08d0622fd026060604052341561000c57fe5b5b7f4f8cfde3439a1a302c21ca51eec26086efbfd940b8c0279889fc6bb6e73ecc6633604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a15b5b60fd806100806000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b11460445780636d4ce63c146061575bfe5b3415604b57fe5b605f60048080359060200190919050506084565b005b3415606857fe5b606e60c6565b6040518082815260200191505060405180910390f35b7fc6d8c0af6d21f291e7c359603aa97e0ed500f04db6e983b9fce75a91c6b8da6b816040518082815260200191505060405180910390a1806000819055505b50565b600060005490505b905600a165627a7a7230582079ba3769927f0f8cf4bec7ce02513b56823c8fc3f4047989951e042a9a04651900292080808080101241d51ca7a0171113478f47357a71c240bd0431f52639741a6721725de276a88d2e723b12f4bbeb1cdddea63f947ddb9db6e2667f08a03af1577c42d3c1a3dc5a7c01208080808010&quot;</span>
+        <span class="o">}</span>
+      <span class="o">]</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="getblockbynumber">getBlockByNumber<a class="headerlink" href="#getblockbynumber" title="Permanent link">&para;</a></h3>
+<p>根据块高度查询块信息。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Quantity</code> - integer of a block height.</li>
+<li><code>Boolean</code> - 是否返回交易信息(True: 返回详细交易列表| False: 只返回交易hash).</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="nx">params</span><span class="o">:</span> <span class="p">[</span>
+   <span class="mh">0x1da3</span><span class="p">,</span>
+   <span class="kc">true</span>
+<span class="p">]</span>
+</pre></div>
+
+</li>
+<li>
+<p>Returns</p>
+<p>See <a href="#getblockbyhash">getBlockByHash</a></p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="nx">curl</span> <span class="o">-</span><span class="nx">X</span> <span class="nx">POST</span> <span class="o">--</span><span class="nx">data</span> <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getBlockByNumber&quot;,&quot;params&quot;:[&quot;0xF9&quot;, true],&quot;id&quot;:1}&#39;</span>
+</pre></div>
+
+</li>
+<li>
+<p>Invalid Params</p>
+<div class="highlight"><pre><span></span>curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getBlockByNumber&quot;,&quot;params&quot;:[&quot;0XF9&quot;, true],&quot;id&quot;:1}&#39;</span>
+<span class="c1">#或者</span>
+curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getBlockByNumber&quot;,&quot;params&quot;:[249, true],&quot;id&quot;:1}&#39;</span>
+</pre></div>
+
+</li>
+</ul>
+<p>高度参数可以用0x开头的十六进制。0X开头或者十进制整数都是错误的参数格式。</p>
+<p>同 <a href="#getblockbyhash">getBlockByHash</a></p>
+<hr />
+<h3 id="gettransactionreceipt">getTransactionReceipt<a class="headerlink" href="#gettransactionreceipt" title="Permanent link">&para;</a></h3>
+<p>根据交易hash获取交易回执。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Data32</code> - hash of a transaction</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="nx">params</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;0xb38e5b6572b2613cab8088f93e6835576209f2b796104779b4a43fa5adc737af&quot;</span>
+<span class="p">]</span>
+</pre></div>
+
+</li>
+<li>
+<p>Returns</p>
+<p>Object - A receipt object:</p>
+<ul>
+<li>transactionHash: <code>Data32</code> - hash of the transaction.</li>
+<li>transactionIndex: <code>Quantity</code> - transaction index.</li>
+<li>blockHash: <code>Data32</code> - hash of the block where this transaction was in. null when its not in block.</li>
+<li>blockNumber: <code>Quantity</code> - block number where this transaction was in. null when its not in block.</li>
+<li>cumulativeGasUsed: <code>Quantity</code> - The total amount of gas used when this transaction was executed in the block.</li>
+<li>gasUsed: <code>Quantity</code> - The amount of gas used by this specific transaction alone.</li>
+<li>contractAddress: <code>Data20</code> - The contract address created, if the transaction was a contract creation, otherwise null.</li>
+<li>logs: <code>Array</code> - Array of log objects, which this transaction generated.</li>
+<li>root: <code>Data32</code> of post-transaction stateroot.</li>
+<li>errorMessage: <code>String</code> execution error message.</li>
+</ul>
+<p>Receipt error messages:</p>
+<ul>
+<li>No transaction permission.</li>
+<li>No contract permission.</li>
+<li>Not enough base gas.</li>
+<li>Block gas limit reached.</li>
+<li>Account gas limit reached.</li>
+<li>Out of gas.</li>
+<li>Jump position wasn't marked with JUMPDEST instruction.</li>
+<li>Instruction is not supported.</li>
+<li>Not enough stack elements to execute instruction.</li>
+<li>Execution would exceed defined Stack Limit.</li>
+<li>EVM internal error.</li>
+<li>Mutable call in static context.</li>
+<li>Out of bounds.</li>
+<li>Reverted.</li>
+</ul>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="nx">curl</span> <span class="o">-</span><span class="nx">X</span> <span class="nx">POST</span> <span class="o">--</span><span class="nx">data</span> <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getTransactionReceipt&quot;,&quot;params&quot;:[&quot;0x019abfa50cbb6df5b6dc41eabba47db4e7eb1787a96fd5836820d581287e0236&quot;],&quot;id&quot;:1}&#39;</span>
+
+<span class="c1">// Result</span>
+<span class="p">{</span>
+    <span class="s2">&quot;jsonrpc&quot;</span><span class="o">:</span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;result&quot;</span><span class="o">:</span><span class="p">{</span>
+        <span class="s2">&quot;transactionHash&quot;</span><span class="o">:</span><span class="s2">&quot;0xb38e5b6572b2613cab8088f93e6835576209f2b796104779b4a43fa5adc737af&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;transactionIndex&quot;</span><span class="o">:</span><span class="s2">&quot;0x0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;blockHash&quot;</span><span class="o">:</span><span class="s2">&quot;0xe068cf7299450b78fe97ed370fd9ebe09ecbd6786968e474fae862ccbd5c5020&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;blockNumber&quot;</span><span class="o">:</span><span class="s2">&quot;0xa&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cumulativeGasUsed&quot;</span><span class="o">:</span><span class="s2">&quot;0x17a0f&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gasUsed&quot;</span><span class="o">:</span><span class="s2">&quot;0x17a0f&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;contractAddress&quot;</span><span class="o">:</span><span class="s2">&quot;0xea4f6bc98b456ef085da5c424db710489848cab5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;logs&quot;</span><span class="o">:</span><span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;address&quot;</span><span class="o">:</span><span class="s2">&quot;0xea4f6bc98b456ef085da5c424db710489848cab5&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;topics&quot;</span><span class="o">:</span><span class="p">[</span>
+                    <span class="s2">&quot;0x8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3&quot;</span>
+                <span class="p">],</span>
+                <span class="s2">&quot;data&quot;</span><span class="o">:</span><span class="s2">&quot;0x0000000000000000000000005b073e9233944b5e729e46d618f0d8edf3d9c34a0000000000000000000000000000000000000000000000000000000000000064&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;blockHash&quot;</span><span class="o">:</span><span class="s2">&quot;0xe068cf7299450b78fe97ed370fd9ebe09ecbd6786968e474fae862ccbd5c5020&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;blockNumber&quot;</span><span class="o">:</span><span class="s2">&quot;0xa&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;transactionHash&quot;</span><span class="o">:</span><span class="s2">&quot;0xb38e5b6572b2613cab8088f93e6835576209f2b796104779b4a43fa5adc737af&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;transactionIndex&quot;</span><span class="o">:</span><span class="s2">&quot;0x0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;logIndex&quot;</span><span class="o">:</span><span class="s2">&quot;0x0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;transactionLogIndex&quot;</span><span class="o">:</span><span class="s2">&quot;0x0&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;root&quot;</span><span class="o">:</span><span class="s2">&quot;0xe702d654a292a8d074fd5ba3769b3dead8095d2a8f2207b3a69bd49c91a178af&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;logsBloom&quot;</span><span class="o">:</span><span class="s2">&quot;0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100040000000010000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">error</span><span class="err">：</span>
+<span class="p">{</span>
+  <span class="s2">&quot;contractAddress&quot;</span><span class="o">:</span> <span class="s2">&quot;0xbb6f8266fae605da373c2526c386fe07542b4957&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;cumulativeGasUsed&quot;</span><span class="o">:</span> <span class="s2">&quot;0x0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;logs&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;blockHash&quot;</span><span class="o">:</span> <span class="s2">&quot;0x296474ecb4c2c8c92b0ba7800a01530b70a6f2b6e76e5c2ed2f89356429ef329&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;transactionHash&quot;</span><span class="o">:</span> <span class="s2">&quot;0x019abfa50cbb6df5b6dc41eabba47db4e7eb1787a96fd5836820d581287e0236&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;root&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;errorMessage&quot;</span><span class="o">:</span> <span class="s2">&quot;No contract permission.&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;blockNumber&quot;</span><span class="o">:</span> <span class="s2">&quot;0x1da3&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;logsBloom&quot;</span><span class="o">:</span> <span class="s2">&quot;0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;transactionIndex&quot;</span><span class="o">:</span> <span class="s2">&quot;0x0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;gasUsed&quot;</span><span class="o">:</span> <span class="s2">&quot;0x0&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+</li>
+</ul>
+<p>如果出现**Timeout，errorcode 99**,请查看可能的解决方法<a href="https://vincent.bernat.im/en/blog/2014-tcp-time-wait-state-linux">Can't assign requested Address</a></p>
+<hr />
+<h3 id="getlogs">getLogs<a class="headerlink" href="#getlogs" title="Permanent link">&para;</a></h3>
+<p>根据Topic查询logs。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Filter</code> - The filter object，详见 <code>Filter</code> 的说明。</li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Array</code> - Array of log objects, or an empty array if no logs
+  * <code>address</code> - 合约地址
+  * <code>topics</code>- 用来构造过滤器的topics
+  * <code>data</code>- 经过 topics 筛选的 log 数据</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="nx">curl</span> <span class="o">-</span><span class="nx">X</span> <span class="nx">POST</span> <span class="o">--</span><span class="nx">data</span> <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getLogs&quot;,&quot;params&quot;:[{&quot;topics&quot;:[&quot;0x8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3&quot;],&quot;fromBlock&quot;: &quot;0x0&quot;}],&quot;id&quot;:74}&#39;</span>
+
+<span class="c1">// Result</span>
+<span class="p">{</span>
+    <span class="s2">&quot;jsonrpc&quot;</span><span class="o">:</span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="mi">74</span><span class="p">,</span>
+    <span class="s2">&quot;result&quot;</span><span class="o">:</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;address&quot;</span><span class="o">:</span><span class="s2">&quot;0xea4f6bc98b456ef085da5c424db710489848cab5&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;topics&quot;</span><span class="o">:</span><span class="p">[</span>
+                <span class="s2">&quot;0x8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;data&quot;</span><span class="o">:</span><span class="s2">&quot;0x0000000000000000000000005b073e9233944b5e729e46d618f0d8edf3d9c34a0000000000000000000000000000000000000000000000000000000000000064&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;blockHash&quot;</span><span class="o">:</span><span class="s2">&quot;0x3e83b74560860344f4c48d7b8089a18173aecd96b6b2148653c61b5d3f559764&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;blockNumber&quot;</span><span class="o">:</span><span class="s2">&quot;0x4&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;transactionHash&quot;</span><span class="o">:</span><span class="s2">&quot;0xb38e5b6572b2613cab8088f93e6835576209f2b796104779b4a43fa5adc737af&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;transactionIndex&quot;</span><span class="o">:</span><span class="s2">&quot;0x0&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;logIndex&quot;</span><span class="o">:</span><span class="s2">&quot;0x0&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;transactionLogIndex&quot;</span><span class="o">:</span><span class="s2">&quot;0x0&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="call">call<a class="headerlink" href="#call" title="Permanent link">&para;</a></h3>
+<p>合约接口调用。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>CallRequest</code> - The transaction call object. 详见 <code>CallRequest</code> 的说明。</li>
+<li><code>BlockNumber</code> - block parameter.</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="nx">params</span><span class="o">:</span> <span class="p">[{</span><span class="s2">&quot;from&quot;</span><span class="o">:</span><span class="s2">&quot;0xca35b7d915458ef540ade6068dfe2f44e8fa733c&quot;</span><span class="p">,</span><span class="s2">&quot;to&quot;</span><span class="o">:</span><span class="s2">&quot;0xea4f6bc98b456ef085da5c424db710489848cab5&quot;</span><span class="p">,</span><span class="s2">&quot;data&quot;</span><span class="o">:</span><span class="s2">&quot;0x6d4ce63c&quot;</span><span class="p">},</span> <span class="s2">&quot;0x1d23&quot;</span><span class="p">]</span>
+</pre></div>
+
+</li>
+<li>
+<p>Returns</p>
+<p><code>Data32</code> - the transaction hash.</p>
+</li>
+<li>
+<p>Example</p>
+<p>contract中get方法Hash和编码后的数据</p>
+<div class="highlight"><pre><span></span>0x6d4ce63c
+</pre></div>
+
+</li>
+</ul>
+<p>发送和获取数据</p>
+<div class="highlight"><pre><span></span>// Request
+curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;call&quot;,&quot;params&quot;:[{&quot;from&quot;:&quot;0xca35b7d915458ef540ade6068dfe2f44e8fa733c&quot;,&quot;to&quot;:&quot;0xea4f6bc98b456ef085da5c424db710489848cab5&quot;,&quot;data&quot;:&quot;0x6d4ce63c&quot;}, &quot;0x6&quot;],&quot;id&quot;:2}&#39;</span>
+
+// Result
+<span class="o">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;id&quot;</span>: <span class="m">2</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="s2">&quot;0x0000000000000000000000000000000000000000000000000000000000000064&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+<hr />
+<h3 id="gettransaction">getTransaction<a class="headerlink" href="#gettransaction" title="Permanent link">&para;</a></h3>
+<p>根据交易hash查询交易。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Data32</code> - hash of a transaction</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="nx">params</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;0x019abfa50cbb6df5b6dc41eabba47db4e7eb1787a96fd5836820d581287e0236&quot;</span>
+<span class="p">]</span>
+</pre></div>
+
+</li>
+<li>
+<p>Returns</p>
+<p>Object - A transaction object, or null when no transaction was found:</p>
+<ul>
+<li>hash: <code>Data32</code> - hash of the transaction.</li>
+<li>content: <code>Data</code> 交易内容.</li>
+<li>blockHash: <code>Data32</code> - hash of the block where this transaction was in. null when its not in block.</li>
+<li>blockNumber: <code>Quantity</code> - block number where this transaction was in. null when its not in block.</li>
+<li>index: <code>Quantity</code> - integer of the transactions index position in the block. null when its not in block.</li>
+</ul>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="nx">curl</span> <span class="o">-</span><span class="nx">X</span> <span class="nx">POST</span> <span class="o">--</span><span class="nx">data</span> <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getTransaction&quot;,&quot;params&quot;:[&quot;0x019abfa50cbb6df5b6dc41eabba47db4e7eb1787a96fd5836820d581287e0236&quot;],&quot;id&quot;:1}&#39;</span>
+
+<span class="c1">// Result</span>
+<span class="p">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span><span class="o">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;hash&quot;</span><span class="o">:</span> <span class="s2">&quot;0x019abfa50cbb6df5b6dc41eabba47db4e7eb1787a96fd5836820d581287e0236&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;content&quot;</span><span class="o">:</span> <span class="s2">&quot;0x0a9b0412013018fface20420f73b2a8d046060604052341561000f57600080fd5b5b60646000819055507f8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3336064604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a15b5b610178806100956000396000f30060606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b1146100495780636d4ce63c1461006c575b600080fd5b341561005457600080fd5b61006a6004808035906020019091905050610095565b005b341561007757600080fd5b61007f610142565b6040518082815260200191505060405180910390f35b7fc6d8c0af6d21f291e7c359603aa97e0ed500f04db6e983b9fce75a91c6b8da6b816040518082815260200191505060405180910390a1806000819055507ffd28ec3ec2555238d8ad6f9faf3e4cd10e574ce7e7ef28b73caa53f9512f65b93382604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a15b50565b6000805490505b905600a165627a7a72305820631927ec00e7a86b68950c2304ba2614a8dcb84780b339fc2bfe442bba418ce800291241884bfdfd8e417ab286fd761d42b71a9544071d91084c56f9063471ce82e266122a8f9a24614e1cf75070eea301bf1e7a65857def86093b6892e09ae7d0bcdff901&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;blockNumber&quot;</span><span class="o">:</span> <span class="s2">&quot;0x1da3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;blockHash&quot;</span><span class="o">:</span> <span class="s2">&quot;0x296474ecb4c2c8c92b0ba7800a01530b70a6f2b6e76e5c2ed2f89356429ef329&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;index&quot;</span><span class="o">:</span> <span class="s2">&quot;0x0&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="gettransactioncount">getTransactionCount<a class="headerlink" href="#gettransactioncount" title="Permanent link">&para;</a></h3>
+<p>获取账户发送交易的数量。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Data20</code> - address.</li>
+<li><code>BlockNumber</code> - integer block number(Hex string), or the string "latest", "earliest"</li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Quantity</code> - integer of the number of transactions send from this address.</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span>curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getTransactionCount&quot;,&quot;params&quot;:[&quot;0x5b073e9233944b5e729e46d618f0d8edf3d9c34a&quot;,&quot;0x1f&quot;],&quot;id&quot;:1}&#39;</span>
+
+// Result:
+<span class="o">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;id&quot;</span>: <span class="m">1</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="s2">&quot;0x1&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="getcode">getCode<a class="headerlink" href="#getcode" title="Permanent link">&para;</a></h3>
+<p>获取合约代码。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Data20</code> - address.</li>
+<li><code>BlockNumber</code> - integer block number(Hex string), or the string "latest", "earliest"</li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Data</code> - the code from the given address.</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span>curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getCode&quot;,&quot;params&quot;:[&quot;0xea4f6bc98b456ef085da5c424db710489848cab5&quot;, &quot;0x1f&quot;],&quot;id&quot;:1}&#39;</span>
+
+// Result:
+<span class="o">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;id&quot;</span>: <span class="m">1</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="s2">&quot;0x60606040526000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b11460445780636d4ce63c146061575bfe5b3415604b57fe5b605f60048080359060200190919050506084565b005b3415606857fe5b606e60c6565b6040518082815260200191505060405180910390f35b7fc6d8c0af6d21f291e7c359603aa97e0ed500f04db6e983b9fce75a91c6b8da6b816040518082815260200191505060405180910390a1806000819055505b50565b600060005490505b905600a165627a7a7230582079ba3769927f0f8cf4bec7ce02513b56823c8fc3f4047989951e042a9a0465190029&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="getabi">getAbi<a class="headerlink" href="#getabi" title="Permanent link">&para;</a></h3>
+<p>获取合约ABI</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Data20</code> - address.</li>
+<li><code>BlockNumber</code> - integer block number(Hex string), or the string "latest", "earliest"</li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Data</code> - the abi from the given address.</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span>curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getAbi&quot;,&quot;params&quot;:[&quot;0x73552bc4e960a1d53013b40074569ea05b950b4d&quot;, &quot;latest&quot;],&quot;id&quot;:1}&#39;</span>
+
+// Result:
+<span class="o">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;id&quot;</span>: <span class="m">1</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="s2">&quot;0x4ed3885e000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000001275b7b22636f6e7374616e74223a66616c73652c22696e70757473223a5b7b226e616d65223a2278222c2274797065223a2275696e74323536227d5d2c226e616d65223a22736574222c226f757470757473223a5b5d2c2270617961626c65223a66616c73652c2273746174654d75746162696c697479223a226e6f6e70617961626c65222c2274797065223a2266756e6374696f6e227d2c7b22636f6e7374616e74223a747275652c22696e70757473223a5b5d2c226e616d65223a22676574222c226f757470757473223a5b7b226e616d65223a22222c2274797065223a2275696e74323536227d5d2c2270617961626c65223a66616c73652c2273746174654d75746162696c697479223a2276696577222c2274797065223a2266756e6374696f6e227d5d00000000000000000000000000000000000000000000000000&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+</ul>
+<h3 id="accountabiabi">在Account中保存ABI和获取ABI<a class="headerlink" href="#accountabiabi" title="Permanent link">&para;</a></h3>
+<p>默认将接收方地址为<code>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</code>的交易为保存合约ABI交易类型。</p>
+<h4 id="abi">保存ABI<a class="headerlink" href="#abi" title="Permanent link">&para;</a></h4>
+<p>保存合约 ABI 到 Account，主要步骤为：</p>
+<ol>
+<li>需要先成功创建合约，得到合约地址；</li>
+<li>使用 solc 编译合约代码得到 ABI，以 String 类型编码成相应参数，详情见<a href="https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI">Ethereum Contract ABI</a>；</li>
+<li>构造交易 data，前 20 字节为合约地址，后面字节为 abi 的编码成的 bytes；</li>
+<li>发送交易，使用<code>sendRawTransaction</code>接口；</li>
+</ol>
+<p>Example</p>
+<p>以<code>scripts/contracts/tests/contracts/test_example.sol</code>这个合约为例子，正常在链上创建该合约；</p>
+<ul>
+<li>
+<p>首先可以通过solc得到合约的ABI；</p>
+<div class="highlight"><pre><span></span>solc --abi test_example.sol
+
+// Result
+<span class="o">[{</span><span class="s2">&quot;constant&quot;</span>:false,<span class="s2">&quot;inputs&quot;</span>:<span class="o">[{</span><span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;x&quot;</span>,<span class="s2">&quot;type&quot;</span>:<span class="s2">&quot;uint256&quot;</span><span class="o">}]</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;set&quot;</span>,<span class="s2">&quot;outputs&quot;</span>:<span class="o">[]</span>,<span class="s2">&quot;payable&quot;</span>:false,<span class="s2">&quot;stateMutability&quot;</span>:<span class="s2">&quot;nonpayable&quot;</span>,<span class="s2">&quot;type&quot;</span>:<span class="s2">&quot;function&quot;</span><span class="o">}</span>,<span class="o">{</span><span class="s2">&quot;constant&quot;</span>:true,<span class="s2">&quot;inputs&quot;</span>:<span class="o">[]</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;get&quot;</span>,<span class="s2">&quot;outputs&quot;</span>:<span class="o">[{</span><span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;&quot;</span>,<span class="s2">&quot;type&quot;</span>:<span class="s2">&quot;uint256&quot;</span><span class="o">}]</span>,<span class="s2">&quot;payable&quot;</span>:false,<span class="s2">&quot;stateMutability&quot;</span>:<span class="s2">&quot;view&quot;</span>,<span class="s2">&quot;type&quot;</span>:<span class="s2">&quot;function&quot;</span><span class="o">}]</span>
+</pre></div>
+
+</li>
+<li>
+<p>将abi作为String类型，编码结果如下：</p>
+<div class="highlight"><pre><span></span>0x4ed3885e0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000
+00000000000000001275b7b22636f6e7374616e74223a66616c73652c22696e70757473223a5b7b226e616d65223a2278222c2274797065223a2275
+696e74323536227d5d2c226e616d65223a22736574222c226f757470757473223a5b5d2c2270617961626c65223a66616c73652c2273746174654d7
+5746162696c697479223a226e6f6e70617961626c65222c2274797065223a2266756e6374696f6e227d2c7b22636f6e7374616e74223a747275652c
+22696e70757473223a5b5d2c226e616d65223a22676574222c226f757470757473223a5b7b226e616d65223a22222c2274797065223a2275696e743
+23536227d5d2c2270617961626c65223a66616c73652c2273746174654d75746162696c697479223a2276696577222c2274797065223a2266756e63
+74696f6e227d5d00000000000000000000000000000000000000000000000000
+</pre></div>
+
+</li>
+<li>
+<p>构造并发送交易到链上</p>
+<div class="highlight"><pre><span></span>// 前面20字节<span class="sb">`</span>73552bc4e960a1d53013b40074569ea05b950b4d<span class="sb">`</span>为合约地址，后面为abi
+python3 make_tx.py --code <span class="s2">&quot;73552bc4e960a1d53013b40074569ea05b950b4d4ed3885e000000000000000000000000000000000000000000000</span>
+<span class="s2">000000000000000002000000000000000000000000000000000000000000000000000000000000001275b7b22636f6e7374616e74223a66616c7365</span>
+<span class="s2">2c22696e70757473223a5b7b226e616d65223a2278222c2274797065223a2275696e74323536227d5d2c226e616d65223a22736574222c226f75747</span>
+<span class="s2">0757473223a5b5d2c2270617961626c65223a66616c73652c2273746174654d75746162696c697479223a226e6f6e70617961626c65222c22747970</span>
+<span class="s2">65223a2266756e6374696f6e227d2c7b22636f6e7374616e74223a747275652c22696e70757473223a5b5d2c226e616d65223a22676574222c226f7</span>
+<span class="s2">57470757473223a5b7b226e616d65223a22222c2274797065223a2275696e74323536227d5d2c2270617961626c65223a66616c73652c2273746174</span>
+<span class="s2">654d75746162696c697479223a2276696577222c2274797065223a2266756e6374696f6e227d5d00000000000000000000000000000000000000000</span>
+<span class="s2">000000000&quot;</span> --to <span class="s2">&quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;</span>  --privkey <span class="s2">&quot;352416e1c910e413768c51390dfd791b414212b7b4fe6b1a</span>
+<span class="s2">18f58007fa894214&quot;</span>
+
+python3 send_tx.py
+
+// Result
+--&gt; <span class="o">{</span><span class="s2">&quot;params&quot;</span>: <span class="o">[</span><span class="s2">&quot;0ad0030a286161616161616161616161616161616161616161616161616161616161616161616161616161616112013118fface20420ba022a980373552bc4e960a1d53013b40074569ea05b950b4d4ed3885e000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000001275b7b22636f6e7374616e74223a66616c73652c22696e70757473223a5b7b226e616d65223a2278222c2274797065223a2275696e74323536227d5d2c226e616d65223a22736574222c226f757470757473223a5b5d2c2270617961626c65223a66616c73652c2273746174654d75746162696c697479223a226e6f6e70617961626c65222c2274797065223a2266756e6374696f6e227d2c7b22636f6e7374616e74223a747275652c22696e70757473223a5b5d2c226e616d65223a22676574222c226f757470757473223a5b7b226e616d65223a22222c2274797065223a2275696e74323536227d5d2c2270617961626c65223a66616c73652c2273746174654d75746162696c697479223a2276696577222c2274797065223a2266756e6374696f6e227d5d000000000000000000000000000000000000000000000000001241a79c6b34aaa552ccbe99c1240ecf892a982fa337d26143f5485cb578f3972c426aaebd031d49b5ce32164422fd292957e183fa5933da8cb9eee426607e3314f101&quot;</span><span class="o">]</span>, <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>, <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;sendRawTransaction&quot;</span>, <span class="s2">&quot;id&quot;</span>: <span class="m">1</span><span class="o">}</span>
+&lt;-- <span class="o">{</span><span class="s2">&quot;jsonrpc&quot;</span>:<span class="s2">&quot;2.0&quot;</span>,<span class="s2">&quot;id&quot;</span>:1,<span class="s2">&quot;result&quot;</span>:<span class="o">{</span><span class="s2">&quot;hash&quot;</span>:<span class="s2">&quot;0x5ea7cf509ef5325bd58f737ab533c7fe5683c285a2d7b71dde90519f5640ae73&quot;</span>,<span class="s2">&quot;status&quot;</span>:<span class="s2">&quot;OK&quot;</span><span class="o">}}</span> <span class="o">(</span><span class="m">200</span> OK<span class="o">)</span>
+transaction <span class="nb">hash</span> 保存到../output/transaction/hash
+</pre></div>
+
+</li>
+</ul>
+<h4 id="abi_1">查询abi<a class="headerlink" href="#abi_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span>curl -X POST --data &#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getAbi&quot;,&quot;params&quot;:[&quot;0x73552bc4e960a1d53013b40074569ea05b950b4d&quot;, &quot;latest&quot;],&quot;id&quot;:1}&#39; 127.0.0.1:1337 | jq
+
+// Result:
+{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;id&quot;: 1,
+  &quot;result&quot;: &quot;0x4ed3885e000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000001275b7b22636f6e7374616e74223a66616c73652c22696e70757473223a5b7b226e616d65223a2278222c2274797065223a2275696e74323536227d5d2c226e616d65223a22736574222c226f757470757473223a5b5d2c2270617961626c65223a66616c73652c2273746174654d75746162696c697479223a226e6f6e70617961626c65222c2274797065223a2266756e6374696f6e227d2c7b22636f6e7374616e74223a747275652c22696e70757473223a5b5d2c226e616d65223a22676574222c226f757470757473223a5b7b226e616d65223a22222c2274797065223a2275696e74323536227d5d2c2270617961626c65223a66616c73652c2273746174654d75746162696c697479223a2276696577222c2274797065223a2266756e6374696f6e227d5d00000000000000000000000000000000000000000000000000&quot;
+}
+</pre></div>
+
+<hr />
+<h3 id="getbalance">getBalance<a class="headerlink" href="#getbalance" title="Permanent link">&para;</a></h3>
+<p>获取合约余额。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Data</code> - address.</li>
+<li><code>BlockNumber</code> - integer block number(Hex string), or the string "latest", "earliest"</li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Data</code> - the balance from the given address.</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span>curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getBalance&quot;,&quot;params&quot;:[&quot;0xea4f6bc98b456ef085da5c424db710489848cab5&quot;, &quot;0x1f&quot;],&quot;id&quot;:1}&#39;</span>
+
+// Result:
+<span class="o">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;id&quot;</span>: <span class="m">1</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="s2">&quot;0x0&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="newfilter">newFilter<a class="headerlink" href="#newfilter" title="Permanent link">&para;</a></h3>
+<p>Creates a filter object, based on filter options, to notify when the state changes (logs). To check if the state has changed, call getFilterChanges.</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Filter</code> - The filter object, see <a href="#getlogs">getLogs</a></li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Quantity</code> - A filter id.</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span>curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;newFilter&quot;,&quot;params&quot;:[{&quot;topics&quot;:[&quot;0x8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3&quot;]}],&quot;id&quot;:1}&#39;</span>
+
+// Result
+<span class="o">{</span>
+  <span class="s2">&quot;id&quot;</span>:1,
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="s2">&quot;0x1&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="newblockfilter">newBlockFilter<a class="headerlink" href="#newblockfilter" title="Permanent link">&para;</a></h3>
+<p>Creates a filter in the node, to notify when a new block arrives. To check if the state has changed, call getFilterChanges.</p>
+<ul>
+<li>
+<p>Parameters</p>
+<p>None</p>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Quantity</code> - A filter id.</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span>curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;newBlockFilter&quot;,&quot;params&quot;:[],&quot;id&quot;:73}&#39;</span>
+
+// Result
+<span class="o">{</span>
+  <span class="s2">&quot;id&quot;</span>:1,
+  <span class="s2">&quot;jsonrpc&quot;</span>:  <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="s2">&quot;0x1&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="uninstallfilter">uninstallFilter<a class="headerlink" href="#uninstallfilter" title="Permanent link">&para;</a></h3>
+<p>Uninstalls a filter with given id. Should always be called when watch is no longer needed.
+Additonally Filters timeout when they aren't requested with getFilterChanges for a period of time.</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Quantity</code> - The filter id.</li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Boolean</code> - true if the filter was successfully uninstalled, otherwise false.</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span>curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;uninstallFilter&quot;,&quot;params&quot;:[&quot;0xb&quot;],&quot;id&quot;:73}&#39;</span>
+
+// Result
+<span class="o">{</span>
+  <span class="s2">&quot;id&quot;</span>:1,
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="nb">true</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="getfilterchanges">getFilterChanges<a class="headerlink" href="#getfilterchanges" title="Permanent link">&para;</a></h3>
+<p>Polling method for a filter, which returns an array of logs which occurred since last poll.</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Quantity</code> - The filter id.</li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Array</code> - Array of log objects, or an empty array if nothing has changed since last poll.
+同 <a href="#getlogs">getLogs</a></p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span>curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getFilterChanges&quot;,&quot;params&quot;:[&quot;0x16&quot;],&quot;id&quot;:74}&#39;</span>
+
+// Result
+<span class="o">{</span>
+    <span class="s2">&quot;jsonrpc&quot;</span>:<span class="s2">&quot;2.0&quot;</span>,
+    <span class="s2">&quot;id&quot;</span>:74,
+    <span class="s2">&quot;result&quot;</span>:<span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">&quot;address&quot;</span>:<span class="s2">&quot;0xea4f6bc98b456ef085da5c424db710489848cab5&quot;</span>,
+            <span class="s2">&quot;topics&quot;</span>:<span class="o">[</span>
+                <span class="s2">&quot;0x8fb1356be6b2a4e49ee94447eb9dcb8783f51c41dcddfe7919f945017d163bf3&quot;</span>
+            <span class="o">]</span>,
+            <span class="s2">&quot;data&quot;</span>:<span class="s2">&quot;0x0000000000000000000000005b073e9233944b5e729e46d618f0d8edf3d9c34a0000000000000000000000000000000000000000000000000000000000000064&quot;</span>,
+            <span class="s2">&quot;blockHash&quot;</span>:<span class="s2">&quot;0x3e83b74560860344f4c48d7b8089a18173aecd96b6b2148653c61b5d3f559764&quot;</span>,
+            <span class="s2">&quot;blockNumber&quot;</span>:<span class="s2">&quot;0x4&quot;</span>,
+            <span class="s2">&quot;transactionHash&quot;</span>:<span class="s2">&quot;0xb38e5b6572b2613cab8088f93e6835576209f2b796104779b4a43fa5adc737af&quot;</span>,
+            <span class="s2">&quot;transactionIndex&quot;</span>:<span class="s2">&quot;0x0&quot;</span>,
+            <span class="s2">&quot;logIndex&quot;</span>:<span class="s2">&quot;0x0&quot;</span>,
+            <span class="s2">&quot;transactionLogIndex&quot;</span>:<span class="s2">&quot;0x0&quot;</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="getfilterlogs">getFilterLogs<a class="headerlink" href="#getfilterlogs" title="Permanent link">&para;</a></h3>
+<p>Returns an array of all logs matching filter with given id.</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li><code>Quantity</code> - The filter id.</li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Array</code> - Array of log objects, or an empty array if nothing has changed since last poll.</p>
+</li>
+<li>
+<p>Example</p>
+<p>同 <a href="#getfilterchanges">getFilterChanges</a></p>
+</li>
+</ul>
+<hr />
+<h3 id="gettransactionproof">getTransactionProof<a class="headerlink" href="#gettransactionproof" title="Permanent link">&para;</a></h3>
+<p>根据交易hash获取交易执行的证明。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li>
+<p><code>Data32</code> - hash of a transaction</p>
+<div class="highlight"><pre><span></span><span class="nx">params</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;0x37f1261203d7b81a5a5cfc4a5c4abf15297555a47fd8686580d5a211876516c4&quot;</span>
+<span class="p">]</span>
+</pre></div>
+
+</li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<p><code>Data</code> - A proof include transaction, receipt, receipt merkle tree proof, block header. There will be a tool to verify the proof and extract some info.</p>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="nx">curl</span> <span class="o">-</span><span class="nx">X</span> <span class="nx">POST</span> <span class="o">--</span><span class="nx">data</span> <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getTransactionProof&quot;,&quot;params&quot;:[&quot;0x37f1261203d7b81a5a5cfc4a5c4abf15297555a47fd8686580d5a211876516c4&quot;],&quot;id&quot;:1}&#39;</span>
+
+<span class="c1">// Result</span>
+<span class="p">{</span>
+    <span class="s2">&quot;jsonrpc&quot;</span><span class="o">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;0xf9070df903f2a09a9102d68052de36b825d5b1f4dc9512684a8b1a61add6337e455ef69eb304e7a044d0da81e6ebd0928c084692e5aacb6f0e56dbd0a064c9639adb7ef9f6fd3b41a037f1261203d7b81a5a5cfc4a5c4abf15297555a47fd8686580d5a211876516c4a02c533219294c9fce960e0749b017a3ce281eb45facaa138123240336fef8327db90100000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000400000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000005b88ffffffffffffffff826d7b86016242114b6f80b902530ace0442000000000000003078306139383765623937646438323539626433623063386665303832303333333762336631386536613161653735613035636261383032336135346563303564355a00000000000000000000000000000004000000000000002a000000000000003078316666333830313730633765633338613831643731636663636433343765653033386464646237304100000000000000cf81312f4118a72b53f35ecd99817cb499597f1ff7132df672e58cbb615180e8535eebe2040d6303b50c55cbe01d01de49512b6dbffc363dd950a4a919b9693b002a000000000000003078383665373133326164326535323433326466323537633630373638373962626334393962343365624100000000000000f75f5b766676560d6e1a116c29ac6176070c5448c453dc68202b4ac7d388c3cc0edf07d2e0c171710c6ec30735d06590b7fa8e3c094a9275df1bfddf026f1a94002a000000000000003078373661393566333633313532666133353338623530366362636539333764343138613164643131644100000000000000cba1c56842458c11245ba64b0fc3f93dc90682b12407623634433a6a22a741af356a2df0603ab6d300b7c8638db7c56761a716d4948da10be177b36193c058e7012a0000000000000030783362313836653138643263353530383661343230323338373239613238303761393364366163633941000000000000000727955db4413d3c7f476d94d7570ae6d6ed4177fff682fde08ee21b1e46e47073d39d22218b55bb56e1e620fb4a5f17c998d9b80892a27fd73d947756483085001002f901e5826d7bb9010000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000040000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000f8dbf8d99473552bc4e960a1d53013b40074569ea05b950b4de1a002d96cafa1b66d774136b3051a7a5675d5cb23a055bfe1410019ec924f4f93acb8a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000073552bc4e960a1d53013b40074569ea05b950b4d00000000000000000000000000000000000000000000000000000000ec90a79a0000000000000000000000000000000000000000000000000000000000000000c001c0f9012c31808398967f9473552bc4e960a1d53013b40074569ea05b950b4d80b8644c6e5926000000000000000000000000000000000000000000000000000000000000000000000000000000000000000073552bc4e960a1d53013b40074569ea05b950b4d000000000000000000000000000000000000000000000000000000000000000281aeb84182e91042d0201d5f3c8def6f7b09a46a02c6d4a9890e878406498f47fc78719a6d86ee0cfb7bba33228649790c7340ea975dbe59b7fd6a0f267de972b1008dbf0180a037f1261203d7b81a5a5cfc4a5c4abf15297555a47fd8686580d5a211876516c4b840c7561cde2792e85c76bf423cf9c339bd085f6ca686e2fe5cb5092c6bff210786790cac0bf6472e6837282bef5e19416e791f5dbf6abbb33e04e4b291d6ef4e1b80&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h3 id="getmetadata">getMetaData<a class="headerlink" href="#getmetadata" title="Permanent link">&para;</a></h3>
+<p>根据高度查询链上元数据。</p>
+<ul>
+<li>
+<p>Parameters</p>
+<ol>
+<li>
+<p><code>BlockNumber</code>, integer of a block height or "latest"</p>
+<div class="highlight"><pre><span></span><span class="n">params</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;0x1da3&quot;</span>
+<span class="p">]</span>
+</pre></div>
+
+</li>
+</ol>
+</li>
+<li>
+<p>Returns</p>
+<ul>
+<li><code>chainId</code>, <code>Integer</code> - Deal with transaction replay attack</li>
+<li><code>chainName</code>, <code>String</code> - Chain name</li>
+<li><code>operator</code>, <code>String</code> - Chain operator</li>
+<li><code>genesisTimestamp</code>, <code>Integer</code> - Genesis timestamp</li>
+<li><code>validators</code>, <code>[Data20]</code> - Validator array</li>
+<li><code>blockInterval</code> <code>Integer</code> - block interval by millisecond</li>
+<li><code>tokenName</code>, <code>String</code> - Token name</li>
+<li><code>tokenSymbol</code>, <code>String</code> - Token symbol</li>
+<li><code>tokenAvatar</code>, <code>String</code> - Token avatar url</li>
+</ul>
+</li>
+<li>
+<p>Example</p>
+<div class="highlight"><pre><span></span>curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getMetaData&quot;,&quot;params&quot;:[&quot;0xff&quot;],&quot;id&quot;:1}&#39;</span> <span class="m">127</span>.0.0.1:1337
+
+<span class="o">{</span>
+    <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+    <span class="s2">&quot;id&quot;</span>: <span class="m">1</span>,
+    <span class="s2">&quot;result&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;chainId&quot;</span>: <span class="m">1</span>,
+        <span class="s2">&quot;chainName&quot;</span>: <span class="s2">&quot;test-chain&quot;</span>,
+        <span class="s2">&quot;operator&quot;</span>: <span class="s2">&quot;test-operator&quot;</span>,
+        <span class="s2">&quot;website&quot;</span>: <span class="s2">&quot;https://www.example.com&quot;</span>,
+        <span class="s2">&quot;genesisTimestamp&quot;</span>: <span class="m">1528076976075</span>,
+        <span class="s2">&quot;validators&quot;</span>: <span class="o">[</span>
+        <span class="s2">&quot;0x18e79b84cd3e5801e7f3dc66546b3b46af812cbd&quot;</span>,
+        <span class="s2">&quot;0x5bb02723557a4633cebfa3f83b1ecb657002f444&quot;</span>,
+        <span class="s2">&quot;0xafbf170735a3535f141cd929f67296de50842638&quot;</span>,
+        <span class="s2">&quot;0xdd321f6586f2c5ceb4ae3ce28d0bd92fb631d3ae&quot;</span>
+        <span class="o">]</span>,
+        <span class="s2">&quot;blockInterval&quot;</span>: <span class="m">3000</span>,
+        <span class="s2">&quot;token_name&quot;</span>: <span class="s2">&quot;tokenName&quot;</span>,
+        <span class="s2">&quot;token_symbol&quot;</span>: <span class="s2">&quot;tokenSymbol&quot;</span>,
+        <span class="s2">&quot;token_avatar&quot;</span>: <span class="s2">&quot;tokenAvatar&quot;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+</ul>
+<hr />
+<h2 id="rpc-errors">RPC Errors<a class="headerlink" href="#rpc-errors" title="Permanent link">&para;</a></h2>
+<h3 id="invalid-request">Invalid Request<a class="headerlink" href="#invalid-request" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>// 正确方式：POST 方法
+curl -X GET -d <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;blockNumber&quot;,&quot;params&quot;:[]}&#39;</span> <span class="m">127</span>.0.0.1:1337
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;jsonrpc&quot;</span>:<span class="s2">&quot;2.0&quot;</span>,<span class="s2">&quot;error&quot;</span>:<span class="o">{</span><span class="s2">&quot;code&quot;</span>:-32600,<span class="s2">&quot;message&quot;</span>:<span class="s2">&quot;Invalid Request&quot;</span><span class="o">}</span>,<span class="s2">&quot;id&quot;</span>:null<span class="o">}</span>
+</pre></div>
+
+<h3 id="method-not-found">Method not found<a class="headerlink" href="#method-not-found" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>// 正确方式： method应该是getBlockByNumber
+curl -X POST -d <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getblockByHeight&quot;,&quot;params&quot;:[true],&quot;id&quot;:3}&#39;</span> <span class="m">127</span>.0.0.1:1337
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;jsonrpc&quot;</span>:<span class="s2">&quot;2.0&quot;</span>, <span class="s2">&quot;error&quot;</span>:<span class="o">{</span><span class="s2">&quot;code&quot;</span>:-32601,<span class="s2">&quot;message&quot;</span>:<span class="s2">&quot;Method not found&quot;</span><span class="o">}</span>,<span class="s2">&quot;id&quot;</span>:3 <span class="o">}</span>
+</pre></div>
+
+<h3 id="invalid-params">Invalid params<a class="headerlink" href="#invalid-params" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>// 正确方式：params 应该是 <span class="o">[</span><span class="s2">&quot;0x019abfa50cbb6df5b6dc41eabba47db4e7eb1787a96fd5836820d581287e0236&quot;</span><span class="o">]</span>
+curl -X POST -d <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getTransaction&quot;,&quot;params&quot;:[0x019abfa50cbb6df5b6dc41eabba47db4e7eb1787a96fd5836820d581287e0236],&quot;id&quot;:2}&#39;</span> <span class="m">127</span>.0.0.1:1337
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;jsonrpc&quot;</span>:<span class="s2">&quot;2.0&quot;</span>, <span class="s2">&quot;error&quot;</span>:<span class="o">{</span><span class="s2">&quot;code&quot;</span>:-32602,<span class="s2">&quot;message&quot;</span>:<span class="s2">&quot;Invalid params&quot;</span><span class="o">}</span>,<span class="s2">&quot;id&quot;</span>:2<span class="o">}</span>
+</pre></div>
+
+<h3 id="null">Null<a class="headerlink" href="#null" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>// 原因：块高度未达到99999
+curl -X POST -d <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;getBlockByNumber&quot;,&quot;params&quot;:[&quot;0x1869F&quot;,true],&quot;id&quot;:2}&#39;</span> <span class="m">127</span>.0.0.1:1337
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;jsonrpc&quot;</span>:<span class="s2">&quot;2.0&quot;</span>,<span class="s2">&quot;id&quot;</span>:2,<span class="s2">&quot;result&quot;</span>:null<span class="o">}</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../smart-contract-guide/index.html" title="Smart Contracts" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                Smart Contracts
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../rpc_error_code/index.html" title="JSON-RPC Error Code" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                JSON-RPC Error Code
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.6cdc17f0.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

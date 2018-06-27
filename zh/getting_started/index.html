@@ -1,0 +1,1719 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="https://github.com/cryptape/cita/zh/getting_started/index.html">
+      
+      
+        <meta name="author" content="Cryptape">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.2.5">
+    
+    
+      
+        <title>快速入门 - CITA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.bcabdff3.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.792431c1.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    
+  </head>
+  
+    
+    
+    
+      <body data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://github.com/cryptape/cita" title="CITA" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                CITA
+              </span>
+              <span class="md-header-nav__topic">
+                快速入门
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" required placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset">&#xE5CD;</button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/cryptape/cita/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../index.html" title="中文" class="md-tabs__link md-tabs__link--active">
+          中文
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../en/index.html" title="EN" class="md-tabs__link">
+          EN
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    CITA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/cryptape/cita/" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      中文
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        中文
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" title="首页" class="md-nav__link">
+      首页
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        快速入门
+      </label>
+    
+    <a href="index.html" title="快速入门" class="md-nav__link md-nav__link--active">
+      快速入门
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="依赖" class="md-nav__link">
+    依赖
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="系统平台要求" class="md-nav__link">
+    系统平台要求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" title="安装 docker" class="md-nav__link">
+    安装 docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_1" title="获取 Docker 镜像" class="md-nav__link">
+    获取 Docker 镜像
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="获取源码" class="md-nav__link">
+    获取源码
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-env-and-daemon" title="Docker env and daemon" class="md-nav__link">
+    Docker env and daemon
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="编译" class="md-nav__link">
+    编译
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="生成节点配置" class="md-nav__link">
+    生成节点配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="运行节点" class="md-nav__link">
+    运行节点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="测试" class="md-nav__link">
+    测试
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="验证" class="md-nav__link">
+    验证
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3" type="checkbox" id="nav-1-3">
+    
+    <label class="md-nav__link" for="nav-1-3">
+      主要概念
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-3">
+        主要概念
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../key-concepts/blockchain/index.html" title="区块链" class="md-nav__link">
+      区块链
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../key-concepts/cita/index.html" title="CITA" class="md-nav__link">
+      CITA
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../components/index.html" title="系统组件" class="md-nav__link">
+      系统组件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-5" type="checkbox" id="nav-1-5">
+    
+    <label class="md-nav__link" for="nav-1-5">
+      使用指南
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-5">
+        使用指南
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-guide/bootstrap/index.html" title="Bootstrap" class="md-nav__link">
+      Bootstrap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-guide/smart-contract-guide/index.html" title="智能合约指南" class="md-nav__link">
+      智能合约指南
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-guide/rpc/index.html" title="JSON-RPC" class="md-nav__link">
+      JSON-RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-guide/rpc-types/index.html" title="JSON-RPC 参数和返回值的数据类型" class="md-nav__link">
+      JSON-RPC 参数和返回值的数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-guide/rpc_error_code/index.html" title="JSON-RPC 错误码" class="md-nav__link">
+      JSON-RPC 错误码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-guide/admintool/index.html" title="系统合约" class="md-nav__link">
+      系统合约
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-guide/txtool/index.html" title="交易相关工具" class="md-nav__link">
+      交易相关工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-6" type="checkbox" id="nav-1-6">
+    
+    <label class="md-nav__link" for="nav-1-6">
+      系统管理
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-6">
+        系统管理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_management/node/index.html" title="节点管理" class="md-nav__link">
+      节点管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_management/permission/index.html" title="权限管理" class="md-nav__link">
+      权限管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_management/user/index.html" title="用户管理" class="md-nav__link">
+      用户管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_management/quota/index.html" title="配额管理" class="md-nav__link">
+      配额管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_management/log/index.html" title="日志管理" class="md-nav__link">
+      日志管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../system_management/snapshot/index.html" title="快照" class="md-nav__link">
+      快照
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-7" type="checkbox" id="nav-1-7">
+    
+    <label class="md-nav__link" for="nav-1-7">
+      跨链
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-7">
+        跨链
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../crosschain/crosschain_contract_example/index.html" title="跨链合约编写及操作示例" class="md-nav__link">
+      跨链合约编写及操作示例
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-8" type="checkbox" id="nav-1-8">
+    
+    <label class="md-nav__link" for="nav-1-8">
+      架构设计
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-8">
+        架构设计
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../architecture/architecture/index.html" title="微服务" class="md-nav__link">
+      微服务
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../architecture/consensus/index.html" title="共识" class="md-nav__link">
+      共识
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../architecture/transaction_process/index.html" title="交易处理" class="md-nav__link">
+      交易处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../architecture/view/index.html" title="视图" class="md-nav__link">
+      视图
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/index.html" title="常见问题" class="md-nav__link">
+      常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-10" type="checkbox" id="nav-1-10">
+    
+    <label class="md-nav__link" for="nav-1-10">
+      附录
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-10">
+        附录
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../appendix/contributing/index.html" title="贡献代码" class="md-nav__link">
+      贡献代码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../appendix/glossary/index.html" title="词汇表" class="md-nav__link">
+      词汇表
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      EN
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        EN
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/index.html" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/getting_started/index.html" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Concepts
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/key-concepts/blockchain/index.html" title="Blockchain" class="md-nav__link">
+      Blockchain
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/key-concepts/cita/index.html" title="CITA" class="md-nav__link">
+      CITA
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/components/index.html" title="Components" class="md-nav__link">
+      Components
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Usage Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        Usage Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/usage-guide/bootstrap/index.html" title="Bootstrap" class="md-nav__link">
+      Bootstrap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/usage-guide/smart-contract-guide/index.html" title="Smart Contracts" class="md-nav__link">
+      Smart Contracts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/usage-guide/rpc/index.html" title="JSON-RPC" class="md-nav__link">
+      JSON-RPC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/usage-guide/rpc_error_code/index.html" title="JSON-RPC Error Code" class="md-nav__link">
+      JSON-RPC Error Code
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/usage-guide/admintool/index.html" title="System Contract" class="md-nav__link">
+      System Contract
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/usage-guide/txtool/index.html" title="Transaction Tool" class="md-nav__link">
+      Transaction Tool
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      System
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        System
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/system_management/node/index.html" title="Node" class="md-nav__link">
+      Node
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/system_management/permission/index.html" title="Permission" class="md-nav__link">
+      Permission
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/system_management/user/index.html" title="User" class="md-nav__link">
+      User
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/system_management/quota/index.html" title="Quota" class="md-nav__link">
+      Quota
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/system_management/log/index.html" title="Log" class="md-nav__link">
+      Log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/system_management/snapshot/index.html" title="Snapshot" class="md-nav__link">
+      Snapshot
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      Cross Chain
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-7">
+        Cross Chain
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/crosschain/crosschain_contract_example/index.html" title="Cross Chain Contract Examples" class="md-nav__link">
+      Cross Chain Contract Examples
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8">
+    
+    <label class="md-nav__link" for="nav-2-8">
+      Architecture
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-8">
+        Architecture
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/architecture/architecture/index.html" title="Micro Service" class="md-nav__link">
+      Micro Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/architecture/consensus/index.html" title="Consensus" class="md-nav__link">
+      Consensus
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/architecture/transaction_process/index.html" title="Transaction Process" class="md-nav__link">
+      Transaction Process
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/architecture/view/index.html" title="View" class="md-nav__link">
+      View
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/faq/index.html" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      Appendix
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-10">
+        Appendix
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/appendix/contributing/index.html" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/appendix/glossary/index.html" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="依赖" class="md-nav__link">
+    依赖
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="系统平台要求" class="md-nav__link">
+    系统平台要求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" title="安装 docker" class="md-nav__link">
+    安装 docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_1" title="获取 Docker 镜像" class="md-nav__link">
+    获取 Docker 镜像
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="获取源码" class="md-nav__link">
+    获取源码
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-env-and-daemon" title="Docker env and daemon" class="md-nav__link">
+    Docker env and daemon
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="编译" class="md-nav__link">
+    编译
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="生成节点配置" class="md-nav__link">
+    生成节点配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="运行节点" class="md-nav__link">
+    运行节点
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="测试" class="md-nav__link">
+    测试
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="验证" class="md-nav__link">
+    验证
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/cryptape/cita/docs/docs/zh/getting_started.md" title="编辑此页" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="_1">快速入门<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">依赖<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">系统平台要求<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>CITA 是基于 <code>Ubuntu 18.04</code> 稳定版开发的，在该系统版本上运行将是正确无误的。</p>
+<p>推荐使用 <code>docker</code> 编译和部署 <code>CITA</code>，保证环境一致。</p>
+<h3 id="docker">安装 docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h3>
+<p>参见 <a href="https://yeasy.gitbooks.io/docker_practice/content/install/">在线资料</a></p>
+<h3 id="docker_1">获取 Docker 镜像<a class="headerlink" href="#docker_1" title="Permanent link">&para;</a></h3>
+<p>CITA 的 Docker 镜像托管在 <a href="https://hub.docker.com/r/cita/cita-build/">DockerHub</a></p>
+<p>可以使用 <code>docker pull</code> 命令直接从 DockerHub 获取， 参见 <a href="https://yeasy.gitbooks.io/docker_practice/content/image/pull.html">在线资料</a>。</p>
+<p>对于内网环境，也可以通过 <code>docker save</code> 和 <code>docker load</code> 传递镜像， 参见 <a href="https://yeasy.gitbooks.io/docker_practice/content/image/other.html">在线资料</a>。</p>
+<h3 id="_4">获取源码<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>从 Github 仓库下载 CITA 的源代码，然后切换到 CITA 的源代码目录</p>
+<div class="highlight"><pre><span></span>git clone https://github.com/cryptape/cita.git
+<span class="nb">cd</span> cita
+git submodule init
+git submodule update
+</pre></div>
+
+<h3 id="docker-env-and-daemon">Docker env and daemon<a class="headerlink" href="#docker-env-and-daemon" title="Permanent link">&para;</a></h3>
+<p>在源码根目录下，我们提供了<code>env.sh</code>脚本，封装了 docker 相关的操作。</p>
+<p>运行此脚本，以实际要运行的命令作为参数，即表示在 docker 环境中运行相关命令。</p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span>./env.sh make debug
+</pre></div>
+
+<p>即表示在 docker 环境中运行<code>make debug</code>。</p>
+<p>不带任何参数运行<code>./env.sh</code>，将直接获取一个 docker 环境的 shell。</p>
+<p>国内用户请使用 <code>env_cn.sh</code>，提供了编译时的国内镜像加速。</p>
+<p>还提供了<code>daemon.sh</code>，用法同<code>env.sh</code>，效果是后台运行。</p>
+<p>如果出现 docker 相关的报错，可以执行如下命令并重试：</p>
+<div class="highlight"><pre><span></span>docker <span class="nb">kill</span> <span class="k">$(</span>docker ps -a -q<span class="k">)</span>
+</pre></div>
+
+<h2 id="_5">编译<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>可以按照自己的需求自行选择相应的编译方式（Debug-调试模式 或 Release-发行模式）</p>
+<div class="highlight"><pre><span></span>./env.sh make debug
+</pre></div>
+
+<p>或者</p>
+<div class="highlight"><pre><span></span>./env.sh make release
+</pre></div>
+
+<p>编译生成的文件在发布件目录<code>target/install</code>下，生产环境下只需要这个目录即可。</p>
+<h2 id="_6">生成节点配置<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>先切换到发布件目录：</p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> target/install
+</pre></div>
+
+<p>发布件目录中的<code>create_cita_config.py</code>工具用来生成节点配置文件，包括创世块配置、节点相关配置、网络连接配置、私钥配置等。</p>
+<p>该工具默认生成的是本地 4 个节点的 Demo 示例配置：</p>
+<div class="highlight"><pre><span></span>./env.sh ./scripts/create_cita_config.py create --nodes <span class="s2">&quot;127.0.0.1:4000,127.0.0.1:4001,127.0.0.1:4002,127.0.0.1:4003&quot;</span>
+</pre></div>
+
+<p>生产环境中，用户需要根据实际情况更改默认配置。</p>
+<p>使用命令<code>./scripts/create_cita_config.py -h</code>来获得详细帮助信息，允许自定义的配置包括：</p>
+<ul>
+<li>系统管理员账户</li>
+<li>网络列表，按照<code>IP1:PORT1,IP2:PORT2,IP3:PORT3 ... IPn:PORTn</code>的格式</li>
+<li>出块时间间隔</li>
+<li>累积多少历史交易量后进行重复交易的检查</li>
+<li>系统合约详细参数</li>
+<li>共识节点地址</li>
+</ul>
+<p>节点初始化操作成功后，将在发布件目录下生成节点的配置文件，其生成的节点目录为：</p>
+<ul>
+<li>test-chain/0</li>
+<li>test-chain/1</li>
+<li>test-chain/2</li>
+<li>test-chain/3</li>
+</ul>
+<blockquote>
+<p><strong><em><font color=red>注意</font></em></strong>
+对于多服务器部署，选择一台服务器执行命令之后把相关节点目录进行拷贝。
+不可多服务器都执行配置脚本。</p>
+</blockquote>
+<h2 id="_7">运行节点<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>操作节点的命令都是相同的，以下以<code>test-chain/0</code>为例进行演示。</p>
+<ol>
+<li>
+<p>配置节点：</p>
+<div class="highlight"><pre><span></span>./env.sh ./bin/cita setup test-chain/0
+</pre></div>
+
+</li>
+<li>
+<p>启动节点：</p>
+<p>该命令正常情况下不会返回，因此需要后台运行。</p>
+<div class="highlight"><pre><span></span>./daemon.sh ./bin/cita start test-chain/0
+</pre></div>
+
+</li>
+<li>
+<p>停止节点：</p>
+<div class="highlight"><pre><span></span>./env.sh ./bin/cita stop test-chain/0
+</pre></div>
+
+</li>
+<li>
+<p>其他操作</p>
+<p>具体使用查看命令的帮助信息：</p>
+<div class="highlight"><pre><span></span>./env.sh ./bin/cita <span class="nb">help</span>
+</pre></div>
+
+</li>
+</ol>
+<blockquote>
+<p><strong><em><font color=red>注意</font></em></strong>
+不可到bin目录然后执行<code>./cita setup/start/stop test-chain/0</code>。
+虽然cita在docker中运行，但是容器并没有做网络隔离。因此请勿在一台服务器上运行多个容器。也不要同时在host系统里面运行cita以及相关的rabbitmq等软件，以免造成端口冲突。</p>
+</blockquote>
+<h2 id="_8">测试<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>除了上述的基本操作命令，为了方便用户对 Demo 进行相关测试，我们在目录<code>cita/tests/integreate_test</code>下提供了一些测试脚本。</p>
+<p>以下命令在源码根目录下运行。</p>
+<ol>
+<li>
+<p>启动 4 个节点</p>
+<div class="highlight"><pre><span></span>./env.sh tests/integrate_test/cita_start.sh
+</pre></div>
+
+<p>该命令正常情况下不会返回，需要保持 shell 不退出。或者用<code>daemon.sh</code>运行。</p>
+</li>
+<li>
+<p>停止 4 个节点</p>
+<p>上一节中的命令中止，或者执行命令：</p>
+<div class="highlight"><pre><span></span>./env.sh ./tests/integrate_test/cita_stop.sh
+</pre></div>
+
+</li>
+<li>
+<p>基本功能测试</p>
+<p>4 个节点启动并成功出块，基本功能测试然后停止 4 个节点：</p>
+<div class="highlight"><pre><span></span>./env.sh ./tests/integrate_test/cita_basic.sh
+</pre></div>
+
+</li>
+<li>
+<p>发送交易测试</p>
+<div class="highlight"><pre><span></span>./env.sh ./tests/integrate_test/cita_transactiontest.sh
+</pre></div>
+
+</li>
+<li>
+<p>拜占庭测试</p>
+<p>模拟网络异常情况下的功能测试。</p>
+<div class="highlight"><pre><span></span>./env.sh ./tests/integrate_test/cita_byzantinetest.sh
+</pre></div>
+
+</li>
+</ol>
+<blockquote>
+<p><strong><em><font color=red>注意</font></em></strong>
+必须使用<code>./env.sh</code></p>
+</blockquote>
+<h2 id="_9">验证<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>查询节点个数</p>
+<p>Request:</p>
+<div class="highlight"><pre><span></span>./env.sh curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;peerCount&quot;,&quot;params&quot;:[],&quot;id&quot;:74}&#39;</span> <span class="m">127</span>.0.0.1:1337
+</pre></div>
+
+<p>Result:</p>
+<div class="highlight"><pre><span></span><span class="o">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;id&quot;</span>: <span class="m">74</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="s2">&quot;0x3&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+</li>
+<li>
+<p>查询当前块高度。</p>
+<p>Request:</p>
+<div class="highlight"><pre><span></span>./env.sh curl -X POST --data <span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;blockNumber&quot;,&quot;params&quot;:[],&quot;id&quot;:83}&#39;</span> <span class="m">127</span>.0.0.1:1337
+</pre></div>
+
+<p>Result:</p>
+<div class="highlight"><pre><span></span><span class="o">{</span>
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;id&quot;</span>: <span class="m">83</span>,
+  <span class="s2">&quot;result&quot;</span>: <span class="s2">&quot;0x8&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>返回块高度，表示节点已经开始正常出块。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong><em><font color=red>注意</font></em></strong>
+在发布件目录(target/install)下运行节点。
+可选择使用<code>./env.sh</code></p>
+</blockquote>
+<p>更多 API（如合约调用、交易查询）请参见<a href="https://cryptape.github.io/cita/zh/usage-guide/rpc/">RPC 调用</a>。</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../index.html" title="首页" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                首页
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../key-concepts/blockchain/index.html" title="区块链" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                区块链
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.6cdc17f0.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
